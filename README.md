@@ -1,4 +1,4 @@
-# This is our group project
+# This is our group project for BSIT-4
 
 # SM of Techvengers:
 

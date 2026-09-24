@@ -1,6 +1,6 @@
 # This is our group project for BSIT-4
 
-# SM of Techvengers:
+# SM of Techvengers: Jay M
 
 # SM of PentaManagement: 
 

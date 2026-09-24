@@ -4,6 +4,6 @@
 
 # SM of PentaManagement: 
 
-# SM of ReneVerse:
+# SM of ReneVerse: SCRUM MASTER DELA CRUZ
 
-# This is sir Jerry's initial setup
+# I deleted two files.

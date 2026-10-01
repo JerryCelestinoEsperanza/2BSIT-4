@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5ef">
+  <meta name="description" content="Hope, Inc. brings people, products, customers, and sales into one clear workspace.">
+  <title>Hope, Inc. | One view of your business</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1d312b;
+      --muted: #63716a;
+      --green: #245d47;
+      --green-dark: #183c30;
+      --mint: #dce9dc;
+      --paper: #f5f5ef;
+      --white: #fffefa;
+      --line: #dfe4dc;
+      --coral: #e9795d;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "DM Sans", "Segoe UI", sans-serif;
+      --display: "Manrope", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.55; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { color: inherit; }
+    .site-header { position: absolute; z-index: 3; top: 0; left: 0; width: 100%; color: white; }
+    .nav-wrap { width: min(1200px, calc(100% - 64px)); height: 82px; margin: auto; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgb(255 255 255 / 24%); }
+    .brand { display: inline-flex; gap: 11px; align-items: center; font: 800 17px var(--display); letter-spacing: 0; }
+    .brand-mark { width: 34px; height: 34px; display: grid; place-items: center; background: #e6a36f; color: var(--green-dark); border-radius: 50% 50% 50% 8px; font: 800 17px var(--display); }
+    .nav-links { display: flex; align-items: center; gap: 30px; font-size: 13px; font-weight: 600; }
+    .nav-links a { color: rgb(255 255 255 / 83%); transition: color .2s; }
+    .nav-links a:hover { color: white; }
+    .nav-actions { display: flex; align-items: center; gap: 19px; }
+    .text-button { border: 0; background: transparent; color: white; padding: 9px 0; cursor: pointer; font-size: 13px; font-weight: 700; }
+    .nav-cta { min-height: 42px; padding: 0 17px; display: inline-flex; align-items: center; gap: 10px; color: var(--green-dark); background: white; border-radius: 3px; border: 1px solid white; font-size: 13px; font-weight: 700; cursor: pointer; transition: background .2s, transform .2s; }
+    .nav-cta:hover { background: #eef0e9; transform: translateY(-1px); }
+    .hero { min-height: 680px; position: relative; display: flex; align-items: center; overflow: hidden; background: #314d41; color: white; }
+    .hero::before { position: absolute; inset: 0; content: ""; background-image: linear-gradient(90deg, rgb(22 50 39 / 86%) 0%, rgb(26 58 44 / 75%) 44%, rgb(29 56 43 / 23%) 100%), linear-gradient(0deg, rgb(25 51 39 / 28%), transparent 60%), url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2000&q=85"); background-size: cover; background-position: center 52%; transform: scale(1.015); }
+    .hero-inner { position: relative; width: min(1200px, calc(100% - 64px)); margin: 0 auto; padding: 138px 0 100px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #d9e7dc; font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+    .eyebrow-dot { width: 7px; height: 7px; border-radius: 50%; background: #edaa7b; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 700px; margin: 24px 0 20px; font: 600 clamp(48px, 6.1vw, 76px)/1.04 var(--display); letter-spacing: 0; }
+    h1 span { color: #e8b185; font-family: var(--serif); font-weight: 400; font-style: italic; }
+    .hero-copy { max-width: 510px; margin: 0 0 29px; color: rgb(255 255 255 / 81%); font-size: 16px; }
+    .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 20px; }
+    .primary-button { min-height: 48px; display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 0 19px; border: 1px solid #f0bd93; background: #f0bd93; color: #244333; border-radius: 3px; font-weight: 700; cursor: pointer; transition: transform .2s, background .2s; }
+    .primary-button:hover { background: #f5caa7; transform: translateY(-1px); }
+    .quiet-link { display: inline-flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 700; }
+    .quiet-link svg, .primary-button svg, .nav-cta svg { width: 16px; height: 16px; }
+    .hero-note { margin-top: 54px; display: flex; align-items: center; gap: 14px; color: rgb(255 255 255 / 78%); font-size: 12px; }
+    .avatar-stack { display: flex; padding-left: 2px; }
+    .avatar-stack i { width: 27px; height: 27px; margin-left: -3px; border: 2px solid #41614e; border-radius: 50%; background: #d6a687; }
+    .avatar-stack i:nth-child(2) { background: #779583; }
+    .avatar-stack i:nth-child(3) { background: #e9c897; }
+    .avatar-stack i:nth-child(4) { background: #8a9b82; }
+    .trust-strip { padding: 25px 32px; background: var(--white); border-bottom: 1px solid var(--line); }
+    .trust-inner { width: min(1200px, 100%); margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 26px; }
+    .trust-label { max-width: 180px; color: var(--muted); font-size: 11px; font-weight: 700; line-height: 1.5; text-transform: uppercase; letter-spacing: 1px; }
+    .trust-point { display: flex; align-items: center; gap: 10px; color: #49584f; font-size: 13px; font-weight: 600; white-space: nowrap; }
+    .trust-point svg { width: 18px; height: 18px; color: var(--green); }
+    .section { width: min(1200px, calc(100% - 64px)); margin: 0 auto; }
+    .modules-section { padding-top: 100px; padding-bottom: 95px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 36px; margin-bottom: 38px; }
+    .section-kicker { margin-bottom: 13px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; }
+    h2 { max-width: 600px; margin-bottom: 0; font: 600 42px/1.12 var(--display); letter-spacing: 0; }
+    .section-heading > p { max-width: 345px; margin-bottom: 4px; color: var(--muted); }
+    .module-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid #cfd7cd; border-bottom: 1px solid #cfd7cd; }
+    .module { min-height: 205px; padding: 24px 22px 25px 0; border-right: 1px solid #cfd7cd; transition: background .2s, padding .2s; }
+    .module:not(:first-child) { padding-left: 22px; }
+    .module:last-child { border-right: 0; }
+    .module:hover { background: rgb(220 233 220 / 42%); }
+    .module-icon { width: 40px; height: 40px; display: grid; place-items: center; margin-bottom: 22px; border-radius: 50%; background: #e3ebe0; color: var(--green); }
+    .module:nth-child(2) .module-icon { background: #f5e6d7; color: #a85f3f; }
+    .module:nth-child(3) .module-icon { background: #e2e9e7; color: #3f7164; }
+    .module:nth-child(4) .module-icon { background: #f2e9ce; color: #8b7140; }
+    .module-icon svg { width: 20px; height: 20px; }
+    .module h3 { margin-bottom: 8px; font: 700 17px var(--display); }
+    .module p { max-width: 235px; margin-bottom: 0; color: var(--muted); font-size: 13px; }
+    .overview { padding: 78px 0 80px; background: #e6ece4; }
+    .overview-inner { display: grid; grid-template-columns: .76fr 1.24fr; align-items: center; gap: 80px; }
+    .overview-copy h2 { max-width: 425px; font-size: 38px; }
+    .overview-copy > p:not(.section-kicker) { max-width: 415px; margin: 20px 0 24px; color: var(--muted); }
+    .overview-link { display: inline-flex; align-items: center; gap: 9px; color: var(--green); font-size: 13px; font-weight: 700; }
+    .overview-link svg { width: 16px; height: 16px; }
+    .preview { padding: 25px 27px 24px; background: var(--white); border: 1px solid #d8dfd7; box-shadow: 0 20px 50px rgb(45 66 51 / 8%); }
+    .preview-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid #e8ebe5; }
+    .preview-title { font: 700 14px var(--display); }
+    .preview-period { color: var(--muted); font-size: 11px; }
+    .preview-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 20px 0; }
+    .stat-label { color: var(--muted); font-size: 10px; }
+    .stat-value { margin-top: 3px; font: 700 24px var(--display); }
+    .stat-change { color: var(--green); font-size: 10px; font-weight: 700; }
+    .preview-lower { display: grid; grid-template-columns: 1.1fr .9fr; gap: 25px; padding-top: 18px; border-top: 1px solid #e8ebe5; }
+    .chart-heading { margin-bottom: 13px; font-size: 11px; font-weight: 700; }
+    .bars { height: 93px; display: flex; align-items: end; gap: 9px; padding: 0 4px; border-bottom: 1px solid #e8ebe5; }
+    .bars span { flex: 1; min-height: 14px; background: #9cbba0; border-radius: 2px 2px 0 0; }
+    .bars span:nth-child(2n) { background: #e6ad86; }
+    .bars span:nth-child(3n) { background: #69947c; }
+    .activity-list { display: grid; gap: 11px; }
+    .activity-item { display: flex; align-items: center; gap: 8px; color: #526056; font-size: 10px; }
+    .activity-dot { width: 7px; height: 7px; flex: 0 0 7px; border-radius: 50%; background: var(--coral); }
+    .activity-item:nth-child(2) .activity-dot { background: #6a9e79; }
+    .activity-item:nth-child(3) .activity-dot { background: #d6a847; }
+    .quote-section { padding: 90px 32px 95px; text-align: center; background: var(--white); }
+    .quote-section blockquote { max-width: 790px; margin: 0 auto 23px; font: 400 31px/1.38 var(--serif); color: #334b3d; }
+    .quote-attribution { color: var(--muted); font-size: 12px; }
+    .quote-attribution strong { color: var(--ink); }
+    .final-cta { padding: 65px 32px; color: white; background: var(--green-dark); }
+    .final-cta-inner { width: min(1200px, 100%); margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .final-cta h2 { max-width: 560px; font-size: 34px; }
+    .final-cta p { margin: 10px 0 0; color: #c4d2c9; }
+    .final-cta .primary-button { flex: 0 0 auto; }
+    footer { padding: 25px 32px; background: #122d23; color: #ced8d1; }
+    .footer-inner { width: min(1200px, 100%); margin: auto; display: flex; justify-content: space-between; gap: 24px; font-size: 11px; }
+    .footer-brand { font-weight: 700; color: white; }
+    .footer-note { color: #a8b8ad; text-align: right; }
+    .modal-backdrop { position: fixed; z-index: 10; inset: 0; display: none; align-items: center; justify-content: center; padding: 20px; background: rgb(14 35 26 / 66%); backdrop-filter: blur(4px); }
+    .modal-backdrop.open { display: flex; animation: fade-in .16s ease-out; }
+    .auth-modal { position: relative; width: min(100%, 445px); max-height: min(760px, calc(100dvh - 40px)); overflow-y: auto; padding: 34px 36px 30px; background: var(--white); box-shadow: 0 25px 80px rgb(0 0 0 / 22%); animation: rise-in .2s ease-out; }
+    .modal-close { position: absolute; top: 17px; right: 17px; width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 50%; background: #edf0e9; cursor: pointer; }
+    .modal-close svg { width: 17px; height: 17px; }
+    .modal-brand { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 24px; color: var(--ink); font: 800 14px var(--display); }
+    .modal-brand .brand-mark { width: 30px; height: 30px; font-size: 15px; }
+    .auth-modal h2 { margin: 0 0 7px; font: 700 27px/1.2 var(--display); }
+    .modal-intro { margin-bottom: 23px; color: var(--muted); font-size: 13px; }
+    .auth-form { display: grid; gap: 14px; }
+    .field { display: grid; gap: 6px; }
+    .field label { font-size: 12px; font-weight: 700; }
+    .field input { width: 100%; height: 44px; padding: 0 12px; outline: none; border: 1px solid #d9dfd7; border-radius: 2px; background: white; color: var(--ink); font-size: 13px; }
+    .field input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgb(36 93 71 / 12%); }
+    .password-wrap { position: relative; }
+    .password-wrap input { padding-right: 54px; }
+    .show-password { position: absolute; right: 9px; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: var(--green); font-size: 11px; font-weight: 700; cursor: pointer; }
+    .form-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 11px; }
+    .remember { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); }
+    .remember input { accent-color: var(--green); }
+    .inline-action { padding: 0; border: 0; background: none; color: var(--green); font-size: 11px; font-weight: 700; cursor: pointer; }
+    .auth-submit { min-height: 45px; margin-top: 4px; border: 0; border-radius: 2px; background: var(--green); color: white; font-size: 13px; font-weight: 700; cursor: pointer; transition: background .2s; }
+    .auth-submit:hover { background: var(--green-dark); }
+    .auth-switch { margin: 19px 0 0; color: var(--muted); text-align: center; font-size: 12px; }
+    .preview-disclaimer { margin: 17px 0 0; padding-top: 14px; border-top: 1px solid #e5e9e2; color: #778179; text-align: center; font-size: 10px; }
+    .form-message { display: none; margin: 0; padding: 10px 11px; background: #e8f1e8; color: #285e43; font-size: 12px; }
+    .form-message.visible { display: block; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes rise-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; } }
+    @media (max-width: 850px) {
+      .nav-wrap, .hero-inner, .section { width: min(100% - 40px, 680px); }
+      .nav-links { gap: 17px; }
+      .nav-links a { font-size: 12px; }
+      .trust-inner { flex-wrap: wrap; justify-content: flex-start; gap: 17px 28px; }
+      .trust-label { max-width: none; width: 100%; }
+      .modules-section { padding-top: 75px; }
+      .module-grid { grid-template-columns: repeat(2, 1fr); }
+      .module { padding: 22px 18px 22px 0; border-bottom: 1px solid #cfd7cd; }
+      .module:not(:first-child) { padding-left: 18px; }
+      .module:nth-child(2) { border-right: 0; }
+      .module:nth-child(3), .module:nth-child(4) { border-bottom: 0; }
+      .overview-inner { grid-template-columns: 1fr; gap: 38px; }
+      .overview-copy { max-width: 600px; }
+    }
+    @media (max-width: 600px) {
+      .nav-wrap { width: calc(100% - 36px); height: 70px; }
+      .nav-links { display: none; }
+      .nav-actions { gap: 13px; }
+      .nav-cta { min-height: 39px; padding: 0 12px; font-size: 12px; }
+      .text-button { font-size: 12px; }
+      .hero { min-height: 690px; align-items: flex-end; }
+      .hero::before { background-position: 62% center; background-image: linear-gradient(90deg, rgb(22 50 39 / 84%) 0%, rgb(26 58 44 / 72%) 60%, rgb(29 56 43 / 36%) 100%), linear-gradient(0deg, rgb(25 51 39 / 25%), transparent 60%), url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=85"); }
+      .hero-inner { width: calc(100% - 40px); padding: 145px 0 55px; }
+      h1 { margin-top: 19px; font-size: 49px; }
+      .hero-copy { font-size: 14px; }
+      .hero-note { margin-top: 38px; }
+      .trust-strip { padding: 21px 20px; }
+      .trust-inner { gap: 14px 18px; }
+      .trust-point { font-size: 11px; }
+      .section { width: calc(100% - 40px); }
+      .modules-section { padding-top: 63px; padding-bottom: 60px; }
+      .section-heading { display: block; margin-bottom: 26px; }
+      h2 { font-size: 34px; }
+      .section-heading > p { margin: 15px 0 0; font-size: 13px; }
+      .module { min-height: 196px; padding-right: 12px; }
+      .module:not(:first-child) { padding-left: 13px; }
+      .module h3 { font-size: 15px; }
+      .module p { font-size: 12px; }
+      .module-icon { margin-bottom: 16px; }
+      .overview { padding: 57px 0; }
+      .overview-inner { gap: 30px; }
+      .overview-copy h2 { font-size: 32px; }
+      .overview-copy > p:not(.section-kicker) { font-size: 13px; }
+      .preview { padding: 19px 16px; }
+      .preview-stats { gap: 8px; }
+      .stat-value { font-size: 20px; }
+      .preview-lower { grid-template-columns: 1fr; gap: 20px; }
+      .activity-list { grid-template-columns: 1fr 1fr; }
+      .quote-section { padding: 65px 23px; }
+      .quote-section blockquote { font-size: 25px; }
+      .final-cta { padding: 49px 20px; }
+      .final-cta-inner { align-items: flex-start; flex-direction: column; }
+      .final-cta h2 { font-size: 29px; }
+      footer { padding: 21px 20px; }
+      .footer-inner { flex-direction: column; gap: 6px; }
+      .footer-note { text-align: left; }
+      .auth-modal { padding: 30px 23px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav-wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Hope Inc. home"><span class="brand-mark" aria-hidden="true">H</span><span>HOPE, INC.</span></a>
+      <div class="nav-links">
+        <a href="#modules">Platform</a>
+        <a href="#overview">Overview</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="nav-actions">
+        <button class="text-button" type="button" data-auth="login">Log in</button>
+        <button class="nav-cta" type="button" data-auth="register">Create account <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> Enterprise, with a human side</div>
+        <h1>One clear view<br>of <span>your business.</span></h1>
+        <p class="hero-copy">Bring your people, products, customers, and sales together in one considered workspace. Less chasing updates. More room to move forward.</p>
+        <div class="hero-actions">
+          <button class="primary-button" type="button" data-auth="register">Get started <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+          <a class="quiet-link" href="#modules">Explore the platform <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14m-7-7 7 7 7-7"/></svg></a>
+        </div>
+        <div class="hero-note"><span class="avatar-stack" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>Built for teams moving in the same direction</span></div>
+      </div>
+    </section>
+
+    <div class="trust-strip" aria-label="Platform benefits">
+      <div class="trust-inner">
+        <span class="trust-label">A steadier way to run the whole business</span>
+        <span class="trust-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>One connected workspace</span>
+        <span class="trust-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg>Thoughtful access controls</span>
+        <span class="trust-point"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-4 4"/></svg>Useful, live insights</span>
+      </div>
+    </div>
+
+    <section class="section modules-section" id="modules">
+      <div class="section-heading">
+        <div><p class="section-kicker">One platform, four perspectives</p><h2>Everything in its place.<br>Everyone in the loop.</h2></div>
+        <p>Give each team the tools and context they need, while keeping the important details connected across your organization.</p>
+      </div>
+      <div class="module-grid">
+        <article class="module">
+          <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1M16 5.5a3 3 0 0 1 0 5.8M18 14a5 5 0 0 1 3 4.6V20"/></svg></div>
+          <h3>Human Resources</h3><p>People records, team structure, and the moments that help employees do their best work.</p>
+        </article>
+        <article class="module">
+          <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.5 7.5 7.5 4.2 7.5-4.2M12 12v9M8 5.3l8 4.5"/></svg></div>
+          <h3>Product Management</h3><p>Keep catalog details, availability, and product decisions easy to find and up to date.</p>
+        </article>
+        <article class="module">
+          <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20v-1a6 6 0 0 1 12 0v1M16 8h5m-2.5-2.5v5"/></svg></div>
+          <h3>Customer Management</h3><p>See every relationship in context, from the first conversation to lasting loyalty.</p>
+        </article>
+        <article class="module">
+          <div class="module-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 6-7"/><path d="M16 6h4v4"/></svg></div>
+          <h3>Sales Management</h3><p>Track opportunities, understand your pipeline, and help good work close with confidence.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="overview" id="overview">
+      <div class="section overview-inner">
+        <div class="overview-copy">
+          <p class="section-kicker">The bigger picture, made practical</p>
+          <h2>Make the next decision a little clearer.</h2>
+          <p>Shared information turns scattered updates into a useful picture of the business. Hope brings the day-to-day and the bigger goals into view together.</p>
+          <a class="overview-link" href="#modules">See what comes together <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+        <div class="preview" aria-label="Illustrative Hope dashboard preview">
+          <div class="preview-top"><span class="preview-title">Company overview</span><span class="preview-period">This month&nbsp; &nbsp;⌄</span></div>
+          <div class="preview-stats">
+            <div><div class="stat-label">Active people</div><div class="stat-value">248</div><div class="stat-change">↑ 6.2% this quarter</div></div>
+            <div><div class="stat-label">Open opportunities</div><div class="stat-value">36</div><div class="stat-change">↑ 4 new this week</div></div>
+            <div><div class="stat-label">Customer health</div><div class="stat-value">94<span style="font-size:13px">%</span></div><div class="stat-change">↑ 2.4% this month</div></div>
+          </div>
+          <div class="preview-lower">
+            <div><div class="chart-heading">Team activity</div><div class="bars" aria-hidden="true"><span style="height:34%"></span><span style="height:49%"></span><span style="height:43%"></span><span style="height:67%"></span><span style="height:58%"></span><span style="height:80%"></span><span style="height:65%"></span><span style="height:91%"></span><span style="height:74%"></span><span style="height:100%"></span></div></div>
+            <div><div class="chart-heading">Recent updates</div><div class="activity-list"><div class="activity-item"><span class="activity-dot"></span>New team member</div><div class="activity-item"><span class="activity-dot"></span>Product updated</div><div class="activity-item"><span class="activity-dot"></span>Deal moved forward</div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section" id="about">
+      <p class="section-kicker">A more connected way to work</p>
+      <blockquote>“Good systems should make space for good work. Hope gives our teams a shared place to start.”</blockquote>
+      <p class="quote-attribution"><strong>Hope, Inc.</strong> &nbsp;|&nbsp; A clearer view, together</p>
+    </section>
+
+    <section class="final-cta">
+      <div class="final-cta-inner"><div><h2>Bring your work into focus.</h2><p>Start with one team. See the whole picture grow.</p></div><button class="primary-button" type="button" data-auth="register">Create your account <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+    </section>
+  </main>
+
+  <footer><div class="footer-inner"><span class="footer-brand">HOPE, INC. &nbsp;·&nbsp; Enterprise Resource Planning</span><span class="footer-note">A connected workspace for the work that matters.</span></div></footer>
+
+  <div class="modal-backdrop" id="auth-backdrop" aria-hidden="true">
+    <section class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-title" aria-describedby="auth-intro">
+      <button class="modal-close" type="button" aria-label="Close dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m18 6-12 12M6 6l12 12"/></svg></button>
+      <div class="modal-brand"><span class="brand-mark" aria-hidden="true">H</span><span>HOPE, INC.</span></div>
+      <h2 id="auth-title">Welcome back</h2>
+      <p class="modal-intro" id="auth-intro">Log in to your Hope workspace.</p>
+      <form class="auth-form" id="auth-form">
+        <div class="field" id="name-field" hidden><label for="full-name">Full name</label><input id="full-name" name="name" autocomplete="name" placeholder="Your name"></div>
+        <div class="field"><label for="email">Work email</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@company.com" required></div>
+        <div class="field" id="password-field"><label for="password">Password</label><div class="password-wrap"><input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter your password" minlength="8" required><button class="show-password" type="button" id="toggle-password">Show</button></div></div>
+        <div class="form-row" id="login-options"><label class="remember"><input type="checkbox" name="remember"> Keep me logged in</label><button class="inline-action" type="button" data-auth="reset">Forgot password?</button></div>
+        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        <button class="auth-submit" id="auth-submit" type="submit">Log in</button>
+      </form>
+      <p class="auth-switch" id="auth-switch">New to Hope? <button class="inline-action" type="button" data-auth="register">Create an account</button></p>
+      <p class="preview-disclaimer">Preview only. Authentication is not connected to a backend.</p>
+    </section>
+  </div>
+
+  <script>
+    (() => {
+      const backdrop = document.getElementById('auth-backdrop');
+      const form = document.getElementById('auth-form');
+      const title = document.getElementById('auth-title');
+      const intro = document.getElementById('auth-intro');
+      const submit = document.getElementById('auth-submit');
+      const nameField = document.getElementById('name-field');
+      const passwordField = document.getElementById('password-field');
+      const loginOptions = document.getElementById('login-options');
+      const switchPrompt = document.getElementById('auth-switch');
+      const message = document.getElementById('form-message');
+      const password = document.getElementById('password');
+      const closeButton = document.querySelector('.modal-close');
+      let previousFocus = null;
+      let mode = 'login';
+
+      const modes = {
+        login: { title: 'Welcome back', intro: 'Log in to your Hope workspace.', submit: 'Log in', autocomplete: 'current-password', switchText: 'New to Hope?', switchAction: 'Create an account' },
+        register: { title: 'Create your account', intro: 'Set up your account to get started with Hope.', submit: 'Create account', autocomplete: 'new-password', switchText: 'Already have an account?', switchAction: 'Log in' },
+        reset: { title: 'Reset your password', intro: 'Enter your work email and we’ll send password reset instructions.', submit: 'Send reset instructions', autocomplete: 'new-password', switchText: 'Remembered your password?', switchAction: 'Log in' }
+      };
+
+      function setMode(nextMode) {
+        mode = modes[nextMode] ? nextMode : 'login';
+        const config = modes[mode];
+        title.textContent = config.title;
+        intro.textContent = config.intro;
+        submit.textContent = config.submit;
+        nameField.hidden = mode !== 'register';
+        passwordField.hidden = mode === 'reset';
+        password.required = mode !== 'reset';
+        password.autocomplete = config.autocomplete;
+        loginOptions.hidden = mode !== 'login';
+        switchPrompt.innerHTML = `${config.switchText} <button class="inline-action" type="button" data-auth="${mode === 'register' ? 'login' : 'register'}">${config.switchAction}</button>`;
+        message.classList.remove('visible');
+        message.textContent = '';
+      }
+
+      function openModal(nextMode) {
+        previousFocus = document.activeElement;
+        setMode(nextMode);
+        backdrop.classList.add('open');
+        backdrop.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        window.setTimeout(() => document.getElementById(mode === 'register' ? 'full-name' : 'email').focus(), 0);
+      }
+
+      function closeModal() {
+        backdrop.classList.remove('open');
+        backdrop.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+      }
+
+      document.addEventListener('click', (event) => {
+        const authTrigger = event.target.closest('[data-auth]');
+        if (authTrigger) {
+          openModal(authTrigger.dataset.auth);
+          return;
+        }
+        if (event.target === backdrop || event.target.closest('.modal-close')) closeModal();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && backdrop.classList.contains('open')) closeModal();
+      });
+
+      document.getElementById('toggle-password').addEventListener('click', (event) => {
+        const isVisible = password.type === 'text';
+        password.type = isVisible ? 'password' : 'text';
+        event.currentTarget.textContent = isVisible ? 'Show' : 'Hide';
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!form.reportValidity()) return;
+        const responses = {
+          login: 'This preview does not sign you in. Connect Supabase Auth to enable login.',
+          register: 'Your details are valid. Connect Supabase Auth to finish account creation.',
+          reset: 'Password reset is not connected yet. Connect Supabase Auth to send reset instructions.'
+        };
+        message.textContent = responses[mode];
+        message.classList.add('visible');
+      });
+
+      closeButton.addEventListener('click', closeModal);
+    })();
+  </script>
+</body>
+</html>
